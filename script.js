@@ -13,30 +13,50 @@ const getRandomNumber = (min, max) => Math.floor(Math.random() * (max - min + 1)
 
 const randomNumbers = [];  // array di numeri casuali che parte vuoto (da 1 a 50 nel mio caso)
 
-randomNumbers.push(getRandomNumber(1, 50), getRandomNumber(1, 50), getRandomNumber(1, 50), getRandomNumber(1, 50), getRandomNumber(1, 50)); //pushamo 5 numeri casuali
+for (let i = 0; i < 5; i++) {
+    randomNumbers.push(getRandomNumber(1, 50));
+}
 
 console.log(randomNumbers);
 
 const memoryNumber = alert(`I tuoi numeri sono ${randomNumbers}`);
 
-const interval = setInterval(myMemoryFunction, 3000); // Evoco la mia funzione dopo 30 secondi (3 seondi per controllare)
+const interval = setTimeout(myMemoryFunction, 3000); // Evoco la mia funzione dopo 30 secondi (3 seondi per controllare)
 
-setTimeout(function () { clearInterval(interval); }, 3000);
+const correctUserNumbers = []; // Array vuoto dove andrò a pushare i numeri che sceglierà l'utente
 
-const userNumbers = []; // Array vuoto dove andrò a pushare i numeri che sceglierà l'utente
+
 
 function myMemoryFunction() {
     // Chiediamo all'utente di scegliere 5 numeri con 5 prompt
 
-    const userNumber1 = parseInt(prompt(`Scegli il primo numero da 1 a 50.`));
-    const userNumber2 = parseInt(prompt(`Scegli il secondo numero da 1 a 50.`));
-    const userNumber3 = parseInt(prompt(`Scegli il terzo numero da 1 a 50.`));
-    const userNumber4 = parseInt(prompt(`Scegli il quarto numero da 1 a 50.`));
-    const userNumber5 = parseInt(prompt(`Scegli il quinto numero da 1 a 50.`));
+    for (let i = 0; i < 5; i++) {
 
-    console.log(userNumber1, userNumber2, userNumber3, userNumber4, userNumber5);
-
-    userNumbers.push(userNumber1, userNumber2, userNumber3, userNumber4, userNumber5);
-
-    console.table(userNumbers);
+        const userNumber = parseInt(prompt('Scegli un numero da 1 a 50.'));
+        if (randomNumbers.includes(userNumber)) {
+            correctUserNumbers.push(userNumber);
+        }
+    }
+    console.table(correctUserNumbers);
+    console.log(`Hai indovinato ${correctUserNumbers.length} numero/i`)
 };
+
+
+/*
+function myMemoryFunction() {
+    // Chiediamo all'utente di scegliere 5 numeri con 5 prompt
+    let i = 0;
+    while (i < 5) {
+        const userNumber = parseInt(prompt('Scegli un numero da 1 a 50.'));
+        if (userNumber != isNaN) {
+            alert('Il valore inserito non è corretto');
+            if (randomNumbers.includes(userNumber)) {
+                correctUserNumbers.push(userNumber);
+            }
+        }
+        i++;
+    }
+    console.table(correctUserNumbers);
+    console.log(`Hai indovinato ${correctUserNumbers.length} numero/i`);
+};
+*/

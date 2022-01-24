@@ -19,14 +19,24 @@ console.log(randomNumbers);
 
 const memoryNumber = alert(`I tuoi numeri sono ${randomNumbers}`);
 
-// Chiediamo all'utente di scegliere 5 numeri con 5 prompt
+const interval = setInterval(myMemoryFunction, 3000); // Evoco la mia funzione dopo 30 secondi (3 seondi per controllare)
 
-const userNumber1 = parseInt(prompt(`Scegli un numero da 1 a 50.`));
-const userNumber2 = parseInt(prompt(`Scegli un numero da 1 a 50.`));
-const userNumber3 = parseInt(prompt(`Scegli un numero da 1 a 50.`));
-const userNumber4 = parseInt(prompt(`Scegli un numero da 1 a 50.`));
-const userNumber5 = parseInt(prompt(`Scegli un numero da 1 a 50.`));
+setTimeout(function () { clearInterval(interval); }, 3000);
 
-console.log(userNumber1, userNumber2, userNumber3, userNumber4, userNumber5);
+const userNumbers = []; // Array vuoto dove andrò a pushare i numeri che sceglierà l'utente
 
+function myMemoryFunction() {
+    // Chiediamo all'utente di scegliere 5 numeri con 5 prompt
 
+    const userNumber1 = parseInt(prompt(`Scegli il primo numero da 1 a 50.`));
+    const userNumber2 = parseInt(prompt(`Scegli il secondo numero da 1 a 50.`));
+    const userNumber3 = parseInt(prompt(`Scegli il terzo numero da 1 a 50.`));
+    const userNumber4 = parseInt(prompt(`Scegli il quarto numero da 1 a 50.`));
+    const userNumber5 = parseInt(prompt(`Scegli il quinto numero da 1 a 50.`));
+
+    console.log(userNumber1, userNumber2, userNumber3, userNumber4, userNumber5);
+
+    userNumbers.push(userNumber1, userNumber2, userNumber3, userNumber4, userNumber5);
+
+    console.table(userNumbers);
+};
